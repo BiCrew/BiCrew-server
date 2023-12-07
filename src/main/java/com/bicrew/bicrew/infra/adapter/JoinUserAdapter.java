@@ -22,4 +22,10 @@ public class JoinUserAdapter implements JoinUserPort {
     public void saveJoinUser(JoinUser joinUser) {
         joinUserRepository.save(new UserEntity(null, joinUser.nickname(), joinUser.encryptedPassword()));
     }
+
+    @Override
+    public JoinUser findByNickname(String nickname) {
+        final var userEntity = joinUserRepository.findByNickname(nickname).orElseThrow();
+        return new JoinUser(userEntity.getNickname(), userEntity.getEncryptedPassword());
+    }
 }

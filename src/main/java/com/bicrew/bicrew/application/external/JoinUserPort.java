@@ -7,4 +7,6 @@ public interface JoinUserPort {
     boolean isNotUniqueNickname(String nickname);
 
     void saveJoinUser(JoinUser joinUser);
+
+    JoinUser findByNickname(String nickname);
 }
