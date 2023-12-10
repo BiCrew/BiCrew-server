@@ -28,4 +28,10 @@ public class JoinUserAdapter implements JoinUserPort {
         final var userEntity = joinUserRepository.findByNickname(nickname).orElseThrow();
         return new JoinUser(userEntity.getNickname(), userEntity.getEncryptedPassword());
     }
+
+    @Override
+    public Long findUserIdByNickname(String nickname) {
+        final var userEntity = joinUserRepository.findByNickname(nickname).orElseThrow();
+        return userEntity.getId();
+    }
 }

@@ -9,4 +9,6 @@ public interface JoinUserPort {
     void saveJoinUser(JoinUser joinUser);
 
     JoinUser findByNickname(String nickname);
+
+    Long findUserIdByNickname(String nickname);
 }

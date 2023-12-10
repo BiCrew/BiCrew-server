@@ -1,5 +1,6 @@
 package com.bicrew.bicrew.support;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
@@ -37,5 +38,15 @@ public class JwtProvider {
                 .setExpiration(expiredAt)
                 .signWith(signKey)
                 .compact();
+    }
+
+    public String getPayload(String token) {
+        final Claims claims = Jwts.parserBuilder()
+                .setSigningKey(signKey)
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+
+        return claims.get("nickname", String.class);
     }
 }
